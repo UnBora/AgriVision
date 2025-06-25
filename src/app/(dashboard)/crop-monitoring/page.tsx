@@ -9,7 +9,6 @@ import {
   MoreHorizontal,
   PlusCircle,
 } from "lucide-react"
-import * as XLSX from "xlsx"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -85,7 +84,8 @@ export default function CropMonitoringPage() {
 
   const regions = ["All", ...Array.from(new Set(MOCK_DATA.cropMonitoring.crops.map((c) => c.region)))]
 
-  const handleExport = () => {
+  const handleExport = async () => {
+    const XLSX = await import("xlsx")
     const headers = ["Crop Type", "Field ID", "Region", "Status", "NDVI Score", "Last Updated"];
     const data = filteredCrops.map(crop => [
         crop.type,
