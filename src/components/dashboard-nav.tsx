@@ -4,8 +4,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
   BarChart,
+  Bot,
   CloudSun,
-  Drone,
   LayoutDashboard,
   Leaf,
   School,
@@ -25,7 +25,7 @@ const navItems = [
   { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/crop-monitoring", icon: Leaf, label: "Crop Monitoring" },
   { href: "/iot-sensors", icon: Signal, label: "IoT Sensors" },
-  { href: "/drone-manager", icon: Drone, label: "Drone Manager" },
+  { href: "/drone-manager", icon: Bot, label: "Drone Manager" },
   { href: "/climate-tools", icon: CloudSun, label: "Climate Tools" },
   { href: "/supply-chain", icon: Truck, label: "Supply Chain" },
   { href: "/farmer-accounts", icon: Users, label: "Farmer Accounts" },
