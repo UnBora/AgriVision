@@ -119,6 +119,23 @@ export const MOCK_DATA = {
         { metric: 'Water Usage', value: '4,500 m³/ha', change: '-12%' },
         { metric: 'Sustainability Index', value: '8.2 / 10', change: '+8%' },
     ]
+  },
+  settings: {
+    roles: [
+      { name: "Admin", permissions: ["all"] },
+      { name: "Operator", permissions: ["view-dashboard", "manage-drones", "edit-crops"] },
+      { name: "Field Agent", permissions: ["view-dashboard", "edit-crops"] },
+      { name: "Farmer", permissions: ["view-dashboard"] },
+    ],
+    allPermissions: [
+      { id: "all", label: "Full Access (All Permissions)" },
+      { id: "view-dashboard", label: "View Dashboard" },
+      { id: "manage-drones", label: "Manage Drones & Missions" },
+      { id: "edit-crops", label: "Edit Crop & Monitoring Data" },
+      { id: "manage-users", label: "Manage Farmer Accounts" },
+      { id: "access-analytics", label: "Access Analytics & Reports" },
+      { id: "access-settings", label: "Access System Settings" },
+    ],
   }
 };
 
