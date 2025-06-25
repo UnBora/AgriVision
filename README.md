@@ -160,4 +160,3 @@ Stores time-series data collected from sensors.
 
 ---
 
-This project was bootstrapped with [Firebase Studio](https://firebase.google.com/studio).
