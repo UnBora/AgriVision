@@ -30,13 +30,15 @@ export default function FarmerAccountsPage() {
   const [newFarmerData, setNewFarmerData] = React.useState({
     name: "",
     village: "",
+    email: "",
+    phoneNumber: "",
     role: "Farmer",
     language: "English",
   })
 
   const handleAddFarmer = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!newFarmerData.name || !newFarmerData.village) {
+    if (!newFarmerData.name || !newFarmerData.village || !newFarmerData.email || !newFarmerData.phoneNumber) {
       toast({ variant: "destructive", title: "Error", description: "Please fill in all fields." })
       return
     }
@@ -46,7 +48,7 @@ export default function FarmerAccountsPage() {
     }
     setFarmers(prevFarmers => [newFarmer, ...prevFarmers])
     setAddFarmerDialogOpen(false)
-    setNewFarmerData({ name: "", village: "", role: "Farmer", language: "English" })
+    setNewFarmerData({ name: "", village: "", email: "", phoneNumber: "", role: "Farmer", language: "English" })
     toast({ title: "Success", description: `${newFarmer.name} has been added.` })
   }
 
@@ -96,6 +98,8 @@ export default function FarmerAccountsPage() {
                   <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Village</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Phone</TableHead>
                   <TableHead>Role</TableHead>
                   <TableHead>Language</TableHead>
                   <TableHead><span className="sr-only">Actions</span></TableHead>
@@ -112,6 +116,8 @@ export default function FarmerAccountsPage() {
                           {farmer.name}
                       </TableCell>
                       <TableCell>{farmer.village}</TableCell>
+                      <TableCell>{farmer.email}</TableCell>
+                      <TableCell>{farmer.phoneNumber}</TableCell>
                       <TableCell><Badge variant="outline">{farmer.role}</Badge></TableCell>
                       <TableCell>{farmer.language}</TableCell>
                       <TableCell>
@@ -189,6 +195,32 @@ export default function FarmerAccountsPage() {
                   onChange={(e) => setNewFarmerData({ ...newFarmerData, village: e.target.value })}
                   className="col-span-3"
                   placeholder="e.g., Kandal"
+                />
+              </div>
+               <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="email" className="text-right">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={newFarmerData.email}
+                  onChange={(e) => setNewFarmerData({ ...newFarmerData, email: e.target.value })}
+                  className="col-span-3"
+                  placeholder="e.g., farmer@example.com"
+                />
+              </div>
+               <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="phoneNumber" className="text-right">
+                  Phone
+                </Label>
+                <Input
+                  id="phoneNumber"
+                  type="tel"
+                  value={newFarmerData.phoneNumber}
+                  onChange={(e) => setNewFarmerData({ ...newFarmerData, phoneNumber: e.target.value })}
+                  className="col-span-3"
+                  placeholder="e.g., 555-123-4567"
                 />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">

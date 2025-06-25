@@ -87,11 +87,11 @@ export const MOCK_DATA = {
   },
   farmerAccounts: {
     farmers: [
-        { id: 'FARM-01', name: 'Sokun Nhem', village: 'Kandal', role: 'Farmer', language: 'Khmer' },
-        { id: 'FARM-02', name: 'John Smith', village: 'Phnom Penh', role: 'Trainer', language: 'English' },
-        { id: 'FARM-03', name: 'Kim Min-jun', village: 'Siem Reap', role: 'Farmer', language: 'Korean' },
-        { id: 'FARM-04', name: 'Chan Lina', village: 'Battambang', role: 'Farmer', language: 'Khmer' },
-        { id: 'FARM-05', name: 'David Wilson', village: 'Kandal', role: 'Field Agent', language: 'English' },
+        { id: 'FARM-01', name: 'Sokun Nhem', village: 'Kandal', role: 'Farmer', language: 'Khmer', email: 's.nhem@example.com', phoneNumber: '555-0101' },
+        { id: 'FARM-02', name: 'John Smith', village: 'Phnom Penh', role: 'Trainer', language: 'English', email: 'j.smith@example.com', phoneNumber: '555-0102' },
+        { id: 'FARM-03', name: 'Kim Min-jun', village: 'Siem Reap', role: 'Farmer', language: 'Korean', email: 'm.kim@example.com', phoneNumber: '555-0103' },
+        { id: 'FARM-04', name: 'Chan Lina', village: 'Battambang', role: 'Farmer', language: 'Khmer', email: 'l.chan@example.com', phoneNumber: '555-0104' },
+        { id: 'FARM-05', name: 'David Wilson', village: 'Kandal', role: 'Field Agent', language: 'English', email: 'd.wilson@example.com', phoneNumber: '555-0105' },
     ]
   },
   trainingCenter: {
