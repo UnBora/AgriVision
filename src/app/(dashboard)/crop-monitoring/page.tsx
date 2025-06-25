@@ -9,6 +9,7 @@ import {
   MoreHorizontal,
   PlusCircle,
 } from "lucide-react"
+import * as XLSX from "xlsx"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -85,20 +86,30 @@ export default function CropMonitoringPage() {
   const regions = ["All", ...Array.from(new Set(MOCK_DATA.cropMonitoring.crops.map((c) => c.region)))]
 
   const handleExport = () => {
-    const csvHeader = "Crop Type,Field ID,Status,NDVI Score,Last Updated,Region\n"
-    const csvRows = filteredCrops.map(c => 
-      `${c.type},${c.fieldId},${c.issue ? c.issue : "Healthy"},${c.ndvi},${c.lastUpdated},${c.region}`
-    ).join("\n")
+    const headers = ["Crop Type", "Field ID", "Region", "Status", "NDVI Score", "Last Updated"];
+    const data = filteredCrops.map(crop => [
+        crop.type,
+        crop.fieldId,
+        crop.region,
+        crop.issue ? crop.issue : "Healthy",
+        crop.ndvi,
+        crop.lastUpdated,
+    ]);
 
-    const csvContent = "data:text/csv;charset=utf-8," + csvHeader + csvRows
-    const encodedUri = encodeURI(csvContent)
-    const link = document.createElement("a")
-    link.setAttribute("href", encodedUri)
-    link.setAttribute("download", "crop_data.csv")
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    toast({ title: "Success", description: "Crop data exported." })
+    const worksheet = XLSX.utils.aoa_to_sheet([headers, ...data]);
+
+    // Adjust column widths for better readability
+    const columnWidths = headers.map(header => ({
+        wch: Math.max(header.length, 15) // width in characters
+    }));
+    worksheet['!cols'] = columnWidths;
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "CropData");
+    
+    XLSX.writeFile(workbook, "AgriVision_Crop_Data.xlsx");
+
+    toast({ title: "Success", description: "Crop data has been exported to an Excel file." })
   }
 
   const handleAddCrop = (e: React.FormEvent) => {
